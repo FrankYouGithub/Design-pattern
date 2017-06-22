@@ -1,0 +1,38 @@
+
+<script type="text/javascript">
+
+    EventCenter = (function(){
+    	var events = {}
+    	function on(event,handler){
+    		events[event] = events[event] || []
+    		events[event].push({
+    			handler: handler
+    		})
+    	}
+
+    	function fire(event,arguments){
+    		if (!events[event]) {
+    			return
+    		}
+    		for (var i = 0; i < events[event].length; i++) {
+    			events[event][i].handler(arguments)
+    		}
+    	}
+
+    	function off(event){
+    		delete events[event]
+    	}
+    	return {
+    		on: on,
+    		fire: fire,
+    		off: off
+    	}
+    })()
+
+    EventCenter.on('change',function(arguments){
+		console.log(arguments)
+	})
+	EventCenter.fire('change','hahaha............')
+	EventCenter.off('change')
+
+</script>

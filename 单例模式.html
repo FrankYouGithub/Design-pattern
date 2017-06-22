@@ -1,0 +1,21 @@
+<script type="text/javascript">
+  var People = (function(){
+  	var instance;
+  	function init(name){
+  		return {
+  			name: name
+  		}
+  	}
+	return {
+		createPeople: function(name){
+			if (!instance) {
+				instance = init(name)
+			}
+			return instance
+		}
+	}
+  })()
+
+  var p1 = People.createPeople('huakun')
+  var p2 = People.createPeople('mengting')
+</script>
